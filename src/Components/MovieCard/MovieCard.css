@@ -1,0 +1,9 @@
+.card {
+  background-color: var(--slate-900);
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  aspect-ratio: 3/4;
+  width: 200px;
+  padding: 8px;
+}
