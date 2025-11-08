@@ -3,7 +3,7 @@ import "./Home.css";
 import { getPopularMovies, searchMovies } from "../../services/api";
 import { useEffect, useState } from "react";
 
-// --- Helper Hooks ---
+// --- Helper Hook ---
 function useMovies() {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
@@ -28,7 +28,6 @@ function useMovies() {
 
   const searchForMovies = async (query) => {
     if (!query.trim()) return;
-
     setLoading(true);
     try {
       const results = await searchMovies(query);
@@ -56,14 +55,16 @@ function SearchBar({ onSearch }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="searchbar">
       <input
         type="text"
         name="movieQuery"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
+        placeholder="Search movies..."
+        className="searchbar__input"
       />
-      <button type="submit" className="btn">
+      <button type="submit" className="searchbar__btn btn btn-primary">
         Search
       </button>
     </form>
@@ -74,17 +75,28 @@ function SearchBar({ onSearch }) {
 export default function Home() {
   const { movies, error, loading, searchForMovies } = useMovies();
 
-  if (loading) return <div className="loading"></div>;
+  if (loading)
+    return (
+      <div className="loading-screen">
+        <div className="spinner"></div>
+      </div>
+    );
+
   if (error) return <div className="error">{error}</div>;
 
   return (
-    <div className="home">
+    <main className="home container fade-in">
+      <h2 className="visually-hidden">Movie List</h2>
       <SearchBar onSearch={searchForMovies} />
-      <div className="card__container">
-        {movies.map((movie) => (
-          <MovieCard movie={movie} key={movie.id} />
-        ))}
-      </div>
-    </div>
+      {movies.length === 0 ? (
+        <p className="no-results">No movies found. Try another search.</p>
+      ) : (
+        <div className="card__container">
+          {movies.map((movie) => (
+            <MovieCard movie={movie} key={movie.id} />
+          ))}
+        </div>
+      )}
+    </main>
   );
 }
