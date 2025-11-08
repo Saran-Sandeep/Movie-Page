@@ -66,6 +66,24 @@
   width: 100%;
 }
 
+/* ----- Active Link ----- */
+.navbar__link.active {
+  color: var(--color-primary);
+}
+
+.navbar__link.active::after {
+  width: 100%;
+  background-color: var(--color-primary);
+}
+
+.navbar__link {
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.navbar__link.active {
+  transform: translateY(-1px);
+}
+
 /* ----- Responsive tweaks ----- */
 @media (max-width: 640px) {
   .navbar__container {

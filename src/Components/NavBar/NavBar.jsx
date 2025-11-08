@@ -1,25 +1,37 @@
 import "./NavBar.css";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function NavBar() {
   return (
     <header className="navbar">
       <nav className="navbar__container container">
         <h1 className="navbar__title">
-          <Link to="/" className="navbar__brand">
+          <NavLink to="/" className="navbar__brand">
             🎬 MoviePage
-          </Link>
+          </NavLink>
         </h1>
+
         <ul className="navbar__links">
           <li>
-            <Link to="/" className="navbar__link">
+            <NavLink
+              to="/"
+              end
+              className={({ isActive }) =>
+                `navbar__link ${isActive ? "active" : ""}`
+              }
+            >
               Home
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/favorites" className="navbar__link">
+            <NavLink
+              to="/favorites"
+              className={({ isActive }) =>
+                `navbar__link ${isActive ? "active" : ""}`
+              }
+            >
               Favorites
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>
