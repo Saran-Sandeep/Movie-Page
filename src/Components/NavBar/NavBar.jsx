@@ -1,5 +1,5 @@
 import "./NavBar.css";
-
+import { Link } from "react-router-dom";
 export default function NavBar() {
   return (
     <nav className="navbar__container">
@@ -8,10 +8,10 @@ export default function NavBar() {
       </div>
       <ul className="navbar__links">
         <li>
-          <a href="/">Home</a>
+          <Link to="/">Home</Link>
         </li>
         <li>
-          <a href="#">Favorites</a>
+          <Link to="/favorites">Favorites</Link>
         </li>
       </ul>
     </nav>

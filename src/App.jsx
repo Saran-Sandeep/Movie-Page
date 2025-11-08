@@ -1,26 +1,16 @@
 import "./App.css";
 import NavBar from "./Components/NavBar/NavBar";
-import MovieCard from "./Components/MovieCard/MovieCard";
-
+import Home from "./Pages/Home/Home";
+import Favorites from "./Pages/Favorites/Favorites";
+import { Routes, Route } from "react-router-dom";
 function App() {
-  let movieData = [];
-
-  for (let i = 1; i <= 101; i++) {
-    movieData.push({
-      id: i,
-      title: "Movie " + i,
-      url: "#",
-    });
-  }
-
   return (
     <>
       <NavBar />
-      <div className="card__container">
-        {movieData.map((movie) => (
-          <MovieCard data={movie} id={movie.id} />
-        ))}
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/favorites" element={<Favorites />}></Route>
+      </Routes>
     </>
   );
 }
