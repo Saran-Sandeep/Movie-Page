@@ -1,0 +1,103 @@
+/* =========================
+   UTILITIES
+   ========================= */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+.text-light {
+  color: var(--color-light);
+}
+.text-muted {
+  color: var(--color-slate400);
+}
+
+/* =========================
+   BUTTONS
+   ========================= */
+.btn {
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: background-color var(--transition-fast),
+    color var(--transition-fast), transform var(--transition-fast);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Primary (Rose) */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-light);
+}
+.btn-primary:hover {
+  background-color: color-mix(in oklab, var(--color-primary) 80%, white 10%);
+}
+
+/* Accent (Indigo) */
+.btn-accent {
+  background-color: var(--color-accent);
+  color: var(--color-light);
+}
+.btn-accent:hover {
+  background-color: color-mix(in oklab, var(--color-accent) 80%, white 10%);
+}
+
+/* =========================
+   SCROLLBAR STYLING
+   ========================= */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-slate800);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-slate600);
+  border-radius: 8px;
+}
+
+/* =========================
+   ANIMATIONS
+   ========================= */
+.fade-in {
+  animation: fadeIn var(--transition-medium) ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
