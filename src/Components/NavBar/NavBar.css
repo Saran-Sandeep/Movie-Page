@@ -1,19 +1,79 @@
+/* =========================
+   NAVBAR STYLES
+   ========================= */
+
+.navbar {
+  background-color: var(--color-dark);
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+}
+
 .navbar__container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 16px 40px;
-  border-bottom: 1px solid var(--slate-900);
+  justify-content: space-between;
+  padding-block: 1rem;
 }
 
-.navbar__title {
-  font-size: 1.25rem;
-  font-weight: bold;
+/* ----- Brand / Title ----- */
+.navbar__brand {
+  font-size: var(--size-xl);
+  font-weight: 700;
+  color: var(--color-primary);
+  transition: color var(--transition-fast), transform var(--transition-fast);
 }
 
+.navbar__brand:hover {
+  color: color-mix(in oklab, var(--color-primary) 80%, white 15%);
+  transform: translateY(-1px);
+}
+
+/* ----- Links ----- */
 .navbar__links {
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
-  gap: 24px;
+  gap: 1.5rem;
+}
+
+.navbar__link {
+  font-size: var(--size-base);
+  font-weight: 500;
+  color: var(--color-light);
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.navbar__link:hover {
+  color: var(--color-accent);
+}
+
+/* Active link underline effect (optional, can be controlled via NavLink later) */
+.navbar__link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: var(--color-accent);
+  transition: width var(--transition-medium) ease-in-out;
+}
+
+.navbar__link:hover::after {
+  width: 100%;
+}
+
+/* ----- Responsive tweaks ----- */
+@media (max-width: 640px) {
+  .navbar__container {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .navbar__links {
+    gap: 1rem;
+  }
 }
