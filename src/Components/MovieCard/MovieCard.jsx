@@ -32,8 +32,17 @@ export default function MovieCard({ movie }) {
           loading="lazy"
         />
         <div className="card__overlay">
-          <button className="card__fav-btn" title="Add to favorites">
-            &hearts;
+          <button
+            className={`card__fav-btn ${
+              favorite ? "card__fav-btn--active" : ""
+            }`}
+            title={favorite ? "Remove from favorites" : "Add to favorites"}
+            onClick={onFavoriteClicked}
+            aria-pressed={favorite}
+          >
+            <span className="card__fav-icon" aria-hidden="true">
+              &hearts;
+            </span>
           </button>
         </div>
       </div>

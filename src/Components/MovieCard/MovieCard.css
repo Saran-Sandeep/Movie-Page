@@ -86,9 +86,13 @@
   opacity: 1;
 }
 
-/* Favorite button */
+/* =========================
+   FAVORITE BUTTON STATES
+   ========================= */
+
 .card__fav-btn {
-  background-color: var(--color-primary);
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
   color: var(--color-light);
   border: none;
   border-radius: 50%;
@@ -99,16 +103,62 @@
   align-items: center;
   justify-content: center;
   box-shadow: var(--shadow-md);
+  cursor: pointer;
   transition: transform var(--transition-fast),
-    background-color var(--transition-fast);
+    background-color var(--transition-fast), color var(--transition-fast);
 }
 
 .card__fav-btn:hover {
   transform: scale(1.1);
-  background-color: color-mix(in oklab, var(--color-primary) 80%, white 20%);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Info section */
+/* Active (in favorites) */
+.card__fav-btn--active {
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  transform: scale(1.1);
+  animation: favPulse 0.3s ease;
+}
+
+.card__fav-btn--active:hover {
+  background-color: color-mix(in oklab, var(--color-primary) 85%, white 15%);
+}
+
+/* Heart icon animation */
+.card__fav-icon {
+  transition: transform var(--transition-fast);
+}
+
+.card__fav-btn:active .card__fav-icon {
+  transform: scale(0.9);
+}
+
+/* Pulse animation when added to favorites */
+@keyframes favPulse {
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(255, 0, 90, 0.4);
+  }
+  50% {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 8px rgba(255, 0, 90, 0);
+  }
+  100% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 0 rgba(255, 0, 90, 0);
+  }
+}
+
+/* Optional: subtle hover animation for inactive button */
+.card__fav-btn:not(.card__fav-btn--active):hover .card__fav-icon {
+  transform: scale(1.15);
+}
+
+/* =========================
+   CARD INFO
+   ========================= */
+
 .card__info {
   padding: 0.9rem 0.8rem 1rem;
   display: flex;
@@ -142,7 +192,10 @@
   color: var(--color-slate400);
 }
 
-/* Responsive */
+/* =========================
+   RESPONSIVE
+   ========================= */
+
 @media (max-width: 768px) {
   .card {
     min-height: 320px;
