@@ -1,6 +1,17 @@
 import "./MovieCard.css";
+import { useMovieContext } from "../../contexts/useMovieContext";
 
 export default function MovieCard({ movie }) {
+  const { isFavorite, addToFavorites, removeFromFavorites } = useMovieContext();
+
+  const favorite = isFavorite(movie.id);
+  const onFavoriteClicked = (e) => {
+    e.preventDefault();
+
+    if (favorite) removeFromFavorites(movie.id);
+    else addToFavorites(movie);
+  };
+
   const releaseYear = movie.release_date
     ? new Date(movie.release_date).getFullYear()
     : "N/A";
